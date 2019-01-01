@@ -1,9 +1,7 @@
 <template>
-<div class="font-mono">
-	<div v-for="row in rows + 1" :key="row">
-		<div v-for="col in 5" :key="col" class="inline">
-			{{ squares[(row - 1) * 5 + col - 1] }}
-		</div>
+<div>
+	<div v-for="row in rows" :key="row" class="row">
+		<div v-for="col in 5" :key="col" class="square" :class="colorClassAt(row, col)" />
 	</div>
 </div>
 </template>
@@ -88,9 +86,37 @@ export default Vue.extend({
 				this.setRandomIndex(squareType, board, used, sideIndex)
 			}
 		},
+
+		colorClassAt (row: number, col: number) {
+			const index = (row - 1) * 5 + col - 1
+			const square = this.squares[index]
+			switch (square) {
+			case 1:
+				return this.duet ? 'bg-green' : 'bg-red-dark'
+			case 2:
+				return 'bg-blue-dark'
+			case 3:
+				return 'bg-black'
+			default:
+				return 'bg-grey-light'
+			}
+		},
 	},
 })
 </script>
 
 <style lang="postcss" scoped>
+.row {
+	@apply border-l border-grey-dark;
+	@apply flex;
+	&:first-child .square {
+		@apply border-t;
+	}
+}
+
+.square {
+	@apply border-b border-r border-grey-dark;
+	width: 20vmin;
+	height: 20vmin;
+}
 </style>
