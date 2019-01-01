@@ -1,0 +1,34 @@
+{
+	"name": "codenames",
+	"version": "0.1.0",
+	"private": true,
+	"scripts": {
+		"serve": "vue-cli-service serve",
+		"build": "vue-cli-service build",
+		"lint": "vue-cli-service lint"
+	},
+	"dependencies": {
+		"register-service-worker": "^1.5.2",
+		"vue": "^2.5.21"
+	},
+	"devDependencies": {
+		"@fullhuman/postcss-purgecss": "^1.1.0",
+		"@ky-is/eslint-config": "^1.6.4",
+		"@ky-is/tailwindcss-plugin-width-height": "^0.1.1",
+		"@ky-is/vue-cli-plugin-tabs": "^1.1.0",
+		"@ky-is/vue-cli-plugin-tailwind": "^1.5.0",
+		"@vue/cli-plugin-babel": "^3.2.0",
+		"@vue/cli-plugin-eslint": "^3.2.0",
+		"@vue/cli-plugin-pwa": "^3.2.0",
+		"@vue/cli-plugin-typescript": "^3.2.0",
+		"@vue/cli-service": "^3.2.0",
+		"@vue/eslint-config-typescript": "^3.2.0",
+		"babel-eslint": "^10.0.1",
+		"eslint": "^5.8.0",
+		"eslint-plugin-vue": "^5.0.0",
+		"postcss-preset-env": "^6.3.0",
+		"tailwindcss": "^0.7.0",
+		"typescript": "~3.1.1",
+		"vue-template-compiler": "^2.5.21"
+	}
+}
