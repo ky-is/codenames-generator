@@ -12,7 +12,7 @@ const extensionsOfCSS = [ 'css', 'less', 'pcss', 'postcss', 'sass', 'scss', 'sty
 
 module.exports = {
 	plugins: [
-		require('postcss-preset-env')({ stage: 2 }),
+		require('postcss-preset-env')({ stage: 0 }),
 		require('tailwindcss')('./tailwind.config.js'),
 		!isHotReloaded && require('@fullhuman/postcss-purgecss')({
 			content: [ `./@(public|src)/**/*.@(${extensionsUsingCSS.join('|')})` ],
