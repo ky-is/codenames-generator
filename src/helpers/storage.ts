@@ -11,10 +11,10 @@ let storage: Storage
 }
 
 export default {
-	get (key: string, defaultValue: string | null = null) {
+	get (key: string, defaultValue: string = '') {
 		if (storage) {
 			const value = storage.getItem(key)
-			if (value !== undefined && value !== 'null') {
+			if (value !== null && value !== 'null') {
 				return value
 			}
 		}

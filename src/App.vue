@@ -2,7 +2,7 @@
 <div id="app">
 	<Setup v-if="inSetup" />
 	<div v-else class="play">
-		<Board :seed="''" :rows="5" :duet="false" :team="0" />
+		<Board />
 		<button class="big my-4" @click="onReset">Reset</button>
 	</div>
 </div>

@@ -10,32 +10,32 @@
 import seedrandom, { prng } from 'seedrandom'
 import Vue from 'vue'
 
+import store from '@/store'
+
 // const SQUARE_NEUTRAL = 0
 const SQUARE_TEAM_1 = 1
 const SQUARE_TEAM_2 = 2
 const SQUARE_DEATH = 3
 
 export default Vue.extend({
-	props: {
-		seed: {
-			type: String,
-			required: true,
-		},
-		rows: {
-			type: Number,
-			required: true,
-		},
-		duet: {
-			type: Boolean,
-			required: true,
-		},
-		team: {
-			type: Number,
-			required: true,
-		},
-	},
-
 	computed: {
+		seed (): string {
+			return store.state.seed
+		},
+		rows (): number {
+			return store.state.rows
+		},
+		mode (): string {
+			return store.state.mode
+		},
+		team (): number {
+			return store.state.team
+		},
+
+		isDuet (): boolean {
+			return this.mode === 'Duet'
+		},
+
 		rngGenerator (): prng {
 			return seedrandom(this.seed)
 		},
@@ -49,8 +49,7 @@ export default Vue.extend({
 			const usedIndicies: boolean[] = []
 			this.setRandomIndex(SQUARE_DEATH, board, usedIndicies, null)
 
-			//TODO 4 rows
-			if (this.duet) {
+			if (this.isDuet) {
 				this.setRandomIndicies(SQUARE_TEAM_1, 3, board, usedIndicies, null)
 				for (let side = 0; side < 2; side += 1) {
 					this.setRandomIndicies(SQUARE_DEATH, 2, board, usedIndicies, side)
@@ -88,7 +87,7 @@ export default Vue.extend({
 			const square = this.squares[index]
 			switch (square) {
 			case 1:
-				return this.duet ? 'bg-green' : 'bg-red-dark'
+				return this.isDuet ? 'bg-green' : 'bg-red-dark'
 			case 2:
 				return 'bg-blue-dark'
 			case 3:
