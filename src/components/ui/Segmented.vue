@@ -2,7 +2,7 @@
 <div class="ui-control">
 	<span
 		v-for="[ key, display ] in data" :key="key"
-		class="control-content" :class="{ selected: key === value }"
+		class="control-content" :class="{ 'selected': key === value }"
 		@click="onSelect(key)"
 		v-html="display || key"
 	/>

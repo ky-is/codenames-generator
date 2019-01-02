@@ -14,12 +14,12 @@
 		<h2>Board size:</h2>
 		<UISegmented :data="[ [4, '4x5'], [5, '5x5'] ]" mutation="rows" />
 	</div>
-	<div class="row">
+	<div v-if="isDuet" class="row">
 		<h2>Your team:</h2>
 		<UISegmented :data="[ [0, 'First'], [1, 'Second'] ]" mutation="team" />
 		<p class="hint">Set to the opposite of your {{ termForOpponent }}!</p>
 	</div>
-	<button class="big  block mx-auto mb-8" @click="onSubmit">Generate</button>
+	<button class="big  block mx-auto my-6" @click="onSubmit">Generate</button>
 </section>
 </template>
 
