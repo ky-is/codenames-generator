@@ -1,45 +1,27 @@
 <template>
 <div id="app">
 	<Setup v-if="inSetup" />
-	<div v-else class="flex-along">
-		<Board :flipped="flipped" />
-		<div class="m-2  flex-against justify-between">
-			<button class="big half" @click="flipped = !flipped">{{ flipped ? 'Unflip' : 'Flip' }}</button>
-			<button class="big half" @click="onReset">Reset</button>
-		</div>
-	</div>
+	<Game v-else />
 </div>
 </template>
 
 <script lang="ts">
 import Vue from 'vue'
 
-import Board from '@/components/Board.vue'
-import Setup from '@/components/Setup.vue'
+import Game from '@/views/Game.vue'
+import Setup from '@/views/Setup.vue'
 
 import store from '@/store'
 
 export default Vue.extend({
 	components: {
-		Board,
+		Game,
 		Setup,
-	},
-
-	data () {
-		return {
-			flipped: true,
-		}
 	},
 
 	computed: {
 		inSetup (): boolean {
 			return store.state.setup || !store.state.seed
-		},
-	},
-
-	methods: {
-		onReset () {
-			store.state.setup = true
 		},
 	},
 })

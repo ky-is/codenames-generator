@@ -15,7 +15,7 @@
 		<UISegmented :data="[ ['Classic'], ['Duet'] ]" mutation="mode" />
 	</div>
 	<div class="row">
-		<h2>Team:</h2>
+		<h2>Your team:</h2>
 		<UISegmented :data="[ [0, 'First'], [1, 'Second'] ]" mutation="team" />
 		<p class="hint">Set to the opposite of your {{ termForOpponent }}!</p>
 	</div>
