@@ -1,11 +1,11 @@
 <template>
 <div id="app">
 	<Setup v-if="inSetup" />
-	<div v-else class="play">
+	<div v-else class="flex-along">
 		<Board :flipped="flipped" />
-		<div class="mx-auto my-4">
-			<button class="big" @click="onReset">Reset</button>
-			<button class="big  ml-2" @click="flipped = !flipped">{{ flipped ? 'Unflip' : 'Flip' }}</button>
+		<div class="m-2  flex-against justify-between">
+			<button class="big half" @click="flipped = !flipped">{{ flipped ? 'Unflip' : 'Flip' }}</button>
+			<button class="big half" @click="onReset">Reset</button>
 		</div>
 	</div>
 </div>
@@ -52,24 +52,43 @@ body {
 	@apply font-sans font-light text-black;
 }
 
-h1, h2, h3 {
+h1, h2, h3, p {
 	@apply px-3 font-light;
+}
+
+button, input {
+	@apply outline-none !important;
 }
 
 button {
 	@apply inline-block;
 	&.big {
 		@apply bg-grey px-4 h-12 rounded-lg text-3xl;
-		min-width: 160px;
+		width: 160px;
+	}
+	&.half {
+		max-width: calc(50% - 4px);
 	}
 }
 
-.play {
+.flex-along, .flex-against {
 	@apply flex;
 }
+.flex-against {
+	@apply flex-col;
+}
+.space-against {
+	@apply mt-2;
+}
 @media (max-aspect-ratio: 1/1) {
-	.play {
+	.space-against {
+		@apply mt-0 ml-2;
+	}
+	.flex-along {
 		@apply flex-col;
+	}
+	.flex-against {
+		@apply flex-row;
 	}
 }
 </style>

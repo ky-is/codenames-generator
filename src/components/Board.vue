@@ -46,7 +46,7 @@ export default Vue.extend({
 		},
 
 		rngGenerator (): prng {
-			return seedrandom(this.seed)
+			return seedrandom(this.seed.toLowerCase())
 		},
 
 		boardCount (): number {

@@ -3,7 +3,7 @@
 	<h1 class="mt-8 mb-6">Codenames Setup</h1>
 	<div class="row">
 		<h2>Seed:</h2>
-		<input v-model="seed" :placeholder="timeSeed.toLocaleString()" class="block w-full h-12 text-center text-2xl text-grey-darker font-light border">
+		<input v-model="seed" :placeholder="timeSeed.toLocaleString()" class="block w-full h-12 text-center text-2xl text-grey-darker font-light border-t border-b">
 		<p class="hint">Set to the same value as your {{ termForOpponent }}. The default value is a new seed every 15 minutes.</p>
 	</div>
 	<div class="row">
@@ -17,9 +17,9 @@
 	<div class="row">
 		<h2>Team:</h2>
 		<UISegmented :data="[ [0, 'First'], [1, 'Second'] ]" mutation="team" />
-		<p class="hint">Be sure this is the opposite of your {{ termForOpponent }}!</p>
+		<p class="hint">Set to the opposite of your {{ termForOpponent }}!</p>
 	</div>
-	<button class="big  block mx-auto" @click="onSubmit">Generate</button>
+	<button class="big  block mx-auto mb-8" @click="onSubmit">Generate</button>
 </section>
 </template>
 
@@ -60,7 +60,7 @@ export default Vue.extend({
 
 	mounted () {
 		const dateParse = Date.parse(store.state.seed)
-		if (dateParse && !isNaN(dateParse)) {
+		if (dateParse && isNaN(dateParse)) {
 			this.seed = store.state.seed
 		} else {
 			this.seed = ''
@@ -69,9 +69,7 @@ export default Vue.extend({
 
 	methods: {
 		onSubmit () {
-			if (!this.seed) {
-				store.set('seed', this.timeSeed.toString())
-			}
+			store.set('seed', this.seed || this.timeSeed.toString())
 			store.state.setup = false
 		},
 	},
