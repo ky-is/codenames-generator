@@ -29,8 +29,8 @@ export default Vue.extend({
 			type: Boolean,
 			required: true,
 		},
-		first: {
-			type: Boolean,
+		team: {
+			type: Number,
 			required: true,
 		},
 	},
@@ -42,10 +42,6 @@ export default Vue.extend({
 
 		boardCount (): number {
 			return 5 * this.rows
-		},
-
-		teamIndex (): number {
-			return this.first ? 0 : 1
 		},
 
 		squares (): number[] {
@@ -76,7 +72,7 @@ export default Vue.extend({
 				index = Math.floor(rng * this.boardCount)
 			} while (used[index])
 			used[index] = true
-			if (sideIndex === null || sideIndex === this.teamIndex) {
+			if (sideIndex === null || sideIndex === this.team) {
 				board[index] = squareType
 			}
 		},
