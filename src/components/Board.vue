@@ -1,5 +1,5 @@
 <template>
-<div :class="{ flipped }">
+<div class="board" :class="{ flipped }">
 	<div v-for="row in rows" :key="row" class="row">
 		<div v-for="col in 5" :key="col" class="square" :class="colorClassFor(squareAt(row, col))">
 			<div v-if="squareAt(row, col) === 3">☠</div>
@@ -113,8 +113,11 @@ export default Vue.extend({
 </script>
 
 <style lang="postcss" scoped>
-.flipped {
-	transform: rotate(180deg);
+.board {
+	transition: transform 700ms;
+	&.flipped {
+		transform: rotate(180deg);
+	}
 }
 
 .row {

@@ -7,12 +7,12 @@
 		<p class="hint">Set to the same value as your {{ termForOpponent }}. The default value is a new seed every 15 minutes.</p>
 	</div>
 	<div class="row">
-		<h2>Board size:</h2>
-		<UISegmented :data="[ [4, '4x5'], [5, '5x5'] ]" mutation="rows" />
-	</div>
-	<div class="row">
 		<h2>Game mode:</h2>
 		<UISegmented :data="[ ['Classic'], ['Duet'] ]" mutation="mode" />
+	</div>
+	<div class="row">
+		<h2>Board size:</h2>
+		<UISegmented :data="[ [4, '4x5'], [5, '5x5'] ]" mutation="rows" />
 	</div>
 	<div class="row">
 		<h2>Your team:</h2>

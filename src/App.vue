@@ -42,16 +42,22 @@ button, input {
 	@apply outline-none !important;
 }
 
+button, input, .control-content {
+	transition: background 250ms, color 250ms;
+}
+
 button {
-	@apply inline-block;
+	@apply inline-block bg-grey;
 	&.big {
-		@apply bg-grey px-4 h-12 rounded-lg text-3xl;
+		@apply px-4 h-12 rounded-lg text-3xl;
 		width: 160px;
 	}
-	&.half {
-		max-width: calc(50% - 4px);
+	&:hover:active {
+		@apply bg-grey-dark;
 	}
 }
+
+/* Aspect ratio */
 
 .flex-along, .flex-against {
 	@apply flex;
