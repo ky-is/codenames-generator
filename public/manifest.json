@@ -1,6 +1,6 @@
 {
-	"name": "codenames",
-	"short_name": "codenames",
+	"name": "Codenames Generator",
+	"short_name": "Codenames",
 	"icons": [
 		{
 			"src": "./icon.png",
@@ -11,5 +11,5 @@
 	"start_url": "./index.html",
 	"display": "standalone",
 	"background_color": "#000000",
-	"theme_color": "#4DBA87"
+	"theme_color": "#000000"
 }
