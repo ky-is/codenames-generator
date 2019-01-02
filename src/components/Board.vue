@@ -1,23 +1,32 @@
 <template>
-<div>
+<div :class="{ flipped }">
 	<div v-for="row in rows" :key="row" class="row">
-		<div v-for="col in 5" :key="col" class="square" :class="colorClassAt(row, col)" />
+		<div v-for="col in 5" :key="col" class="square" :class="colorClassFor(squareAt(row, col))">
+			<div v-if="squareAt(row, col) === 3">☠</div>
+		</div>
 	</div>
 </div>
 </template>
 
 <script lang="ts">
-import seedrandom, { prng } from 'seedrandom'
+import seedrandom, { prng } from 'seedrandom' // eslint-disable-line no-unused-vars
 import Vue from 'vue'
 
 import store from '@/store'
 
-// const SQUARE_NEUTRAL = 0
+const SQUARE_NEUTRAL = 0
 const SQUARE_TEAM_1 = 1
 const SQUARE_TEAM_2 = 2
 const SQUARE_DEATH = 3
 
 export default Vue.extend({
+	props: {
+		flipped: {
+			type: Boolean,
+			required: true,
+		},
+	},
+
 	computed: {
 		seed (): string {
 			return store.state.seed
@@ -45,7 +54,7 @@ export default Vue.extend({
 		},
 
 		squares (): number[] {
-			const board: number[] = new Array(this.boardCount).fill(0)
+			const board: number[] = new Array(this.boardCount).fill(SQUARE_NEUTRAL)
 			const usedIndicies: boolean[] = []
 			this.setRandomIndex(SQUARE_DEATH, board, usedIndicies, null)
 
@@ -82,9 +91,12 @@ export default Vue.extend({
 			}
 		},
 
-		colorClassAt (row: number, col: number) {
+		squareAt (row: number, col: number): number {
 			const index = (row - 1) * 5 + col - 1
-			const square = this.squares[index]
+			return this.squares[index]
+		},
+
+		colorClassFor (square: number): string {
 			switch (square) {
 			case 1:
 				return this.isDuet ? 'bg-green' : 'bg-red-dark'
@@ -101,6 +113,10 @@ export default Vue.extend({
 </script>
 
 <style lang="postcss" scoped>
+.flipped {
+	transform: rotate(180deg);
+}
+
 .row {
 	@apply border-l border-grey-dark;
 	@apply flex;
@@ -110,7 +126,8 @@ export default Vue.extend({
 }
 
 .square {
-	@apply border-b border-r border-grey-dark;
+	@apply border-b border-r border-grey-dark text-3xl;
+	@apply flex justify-center items-center;
 	width: 20vmin;
 	height: 20vmin;
 }

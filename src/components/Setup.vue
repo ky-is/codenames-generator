@@ -19,7 +19,7 @@
 		<UISegmented :data="[ [0, 'First'], [1, 'Second'] ]" mutation="team" />
 		<p class="hint">Be sure this is the opposite of your {{ termForOpponent }}!</p>
 	</div>
-	<button class="big" @click="onSubmit">Generate</button>
+	<button class="big  block mx-auto" @click="onSubmit">Generate</button>
 </section>
 </template>
 

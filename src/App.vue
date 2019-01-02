@@ -2,8 +2,11 @@
 <div id="app">
 	<Setup v-if="inSetup" />
 	<div v-else class="play">
-		<Board />
-		<button class="big my-4" @click="onReset">Reset</button>
+		<Board :flipped="flipped" />
+		<div class="mx-auto my-4">
+			<button class="big" @click="onReset">Reset</button>
+			<button class="big  ml-2" @click="flipped = !flipped">{{ flipped ? 'Unflip' : 'Flip' }}</button>
+		</div>
 	</div>
 </div>
 </template>
@@ -20,6 +23,12 @@ export default Vue.extend({
 	components: {
 		Board,
 		Setup,
+	},
+
+	data () {
+		return {
+			flipped: true,
+		}
 	},
 
 	computed: {
@@ -47,8 +56,12 @@ h1, h2, h3 {
 	@apply px-3 font-light;
 }
 
-button.big {
-	@apply block mx-auto bg-grey px-4 h-12 rounded-lg text-3xl;
+button {
+	@apply inline-block;
+	&.big {
+		@apply bg-grey px-4 h-12 rounded-lg text-3xl;
+		min-width: 160px;
+	}
 }
 
 .play {
