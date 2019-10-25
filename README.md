@@ -1,29 +1,7 @@
-# codenames
+# Codenames Generator
 
-## Project setup
-```
-npm install
-```
+[https://ky.is/codenames]()
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+## Features
 
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Run your tests
-```
-npm run test
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+Generate key cards for Codenames Classic or Duet, with 5x5 or 5x4 grids, in accordance with the official rules (Duet has one side of the card for each team, with exactly 1 overlapping death square + 3 shared goal squares).
