@@ -1,9 +1,13 @@
 <template>
 <div class="board" :class="{ flipped }">
 	<div v-for="row in rows" :key="row" class="row">
-		<div v-for="col in 5" :key="col" class="square" :class="colorClassFor(squareAt(row, col))">
-			<div v-if="squareAt(row, col) === 3">☠</div>
-		</div>
+		<template v-for="col in 5">
+			<Let :key="col" v-slot="{ square }" :square="squareAt(row, col)">
+				<div class="square" :class="colorClassFor(square)">
+					<div v-if="square === 3" class="text-6xl text-grey-light">☠</div>
+				</div>
+			</Let>
+		</template>
 	</div>
 </div>
 </template>
@@ -14,12 +18,18 @@ import Vue from 'vue'
 
 import store from '@/store'
 
+import TemplateVariable from '@/components/ui/TemplateVariable.vue'
+
 const SQUARE_NEUTRAL = 0
 const SQUARE_TEAM_1 = 1
 const SQUARE_TEAM_2 = 2
 const SQUARE_DEATH = 3
 
 export default Vue.extend({
+	components: {
+		Let: TemplateVariable,
+	},
+
 	props: {
 		flipped: {
 			type: Boolean,
@@ -129,8 +139,7 @@ export default Vue.extend({
 }
 
 .square {
-	@apply border-b border-r border-grey-dark text-3xl;
-	@apply flex justify-center items-center;
+	@apply border-b border-r border-grey-dark  flex justify-center items-center;
 	width: 20vmin;
 	height: 20vmin;
 }
