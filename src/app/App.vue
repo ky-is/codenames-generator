@@ -28,7 +28,7 @@ export default Vue.extend({
 </script>
 
 <style lang="postcss">
-@import 'assets/styles/tailwind.postcss';
+@import '../assets/styles/tailwind.postcss';
 
 body {
 	@apply font-sans font-light text-black;
