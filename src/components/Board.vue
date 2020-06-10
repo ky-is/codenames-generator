@@ -1,10 +1,10 @@
 <template>
 <div class="board" :class="{ flipped }">
 	<div v-for="row in rows" :key="row" class="row">
-		<template v-for="col in 5">
+		<template v-for="col in COLUMN_COUNT">
 			<Let :key="col" v-slot="{ square }" :square="squareAt(row, col)">
 				<div class="square" :class="colorClassFor(square)">
-					<div v-if="square === 3" class="text-6xl text-grey-light">☠</div>
+					<div v-if="square === SQUARE_DEATH" class="text-6xl text-grey-light">☠</div>
 				</div>
 			</Let>
 		</template>
@@ -24,6 +24,7 @@ const SQUARE_NEUTRAL = 0
 const SQUARE_TEAM_1 = 1
 const SQUARE_TEAM_2 = 2
 const SQUARE_DEATH = 3
+const COLUMN_COUNT = 5
 
 export default Vue.extend({
 	components: {
@@ -35,6 +36,13 @@ export default Vue.extend({
 			type: Boolean,
 			required: true,
 		},
+	},
+
+	data () {
+		return {
+			SQUARE_DEATH,
+			COLUMN_COUNT,
+		}
 	},
 
 	computed: {
@@ -67,7 +75,6 @@ export default Vue.extend({
 			const board: number[] = new Array(this.boardCount).fill(SQUARE_NEUTRAL)
 			const usedIndicies: boolean[] = []
 			this.setRandomIndex(SQUARE_DEATH, board, usedIndicies, null)
-
 			if (this.isDuet) {
 				this.setRandomIndicies(SQUARE_TEAM_1, 3, board, usedIndicies, null)
 				for (let side = 0; side < 2; side += 1) {
@@ -102,20 +109,22 @@ export default Vue.extend({
 		},
 
 		squareAt (row: number, col: number): number {
-			const index = (row - 1) * 5 + col - 1
+			const index = (row - 1) * COLUMN_COUNT + (col - 1)
 			return this.squares[index]
 		},
 
 		colorClassFor (square: number): string {
 			switch (square) {
-			case 1:
+			case SQUARE_TEAM_1:
 				return this.isDuet ? 'bg-green' : 'bg-red-dark'
-			case 2:
+			case SQUARE_TEAM_2:
 				return 'bg-blue-dark'
-			case 3:
+			case SQUARE_DEATH:
 				return 'bg-black'
-			default:
+			case SQUARE_NEUTRAL:
 				return 'bg-grey-light'
+			default:
+				throw new Error('Invalid square')
 			}
 		},
 	},
