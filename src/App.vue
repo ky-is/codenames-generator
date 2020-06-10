@@ -8,10 +8,10 @@
 <script lang="ts">
 import Vue from 'vue'
 
-import Game from '@/views/Game.vue'
-import Setup from '@/views/Setup.vue'
+import Game from '@/views/pages/Game.vue'
+import Setup from '@/views/pages/Setup.vue'
 
-import store from '@/store'
+import store from '@/helpers/store'
 
 export default Vue.extend({
 	components: {

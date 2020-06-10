@@ -16,9 +16,9 @@
 import seedrandom, { prng } from 'seedrandom' // eslint-disable-line no-unused-vars
 import Vue from 'vue'
 
-import store from '@/store'
+import store from '@/helpers/store'
 
-import TemplateVariable from '@/components/ui/TemplateVariable.vue'
+import TemplateVariable from '@/views/components/ui/TemplateVariable.vue'
 
 const SQUARE_NEUTRAL = 0
 const SQUARE_TEAM_1 = 1

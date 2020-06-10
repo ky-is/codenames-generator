@@ -12,7 +12,7 @@ export default {
 	state,
 
 	set (key: 'seed' | 'mode' | 'team' | 'rows', value: any) {
-		state[key] = value
+		(state[key] as any) = value
 		storage.set(key, value)
 	},
 }

@@ -12,7 +12,7 @@
 <script>
 import Vue from 'vue'
 
-import store from '@/store'
+import store from '@/helpers/store'
 
 export default Vue.extend({
 	props: {

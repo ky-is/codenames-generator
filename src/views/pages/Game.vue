@@ -11,9 +11,9 @@
 <script lang="ts">
 import Vue from 'vue'
 
-import Board from '@/components/Board.vue'
+import Board from '@/views/components/Board.vue'
 
-import store from '@/store'
+import store from '@/helpers/store'
 
 export default Vue.extend({
 	components: {

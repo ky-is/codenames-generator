@@ -26,9 +26,9 @@
 <script lang="ts">
 import Vue from 'vue'
 
-import UISegmented from '@/components/ui/Segmented.vue'
+import UISegmented from '@/views/components/ui/Segmented.vue'
 
-import store from '@/store'
+import store from '@/helpers/store'
 
 export default Vue.extend({
 	components: {
@@ -42,17 +42,17 @@ export default Vue.extend({
 	},
 
 	computed: {
-		mode () {
+		mode (): string {
 			return store.state.mode
 		},
 		isDuet (): boolean {
 			return this.mode === 'Duet'
 		},
-		termForOpponent () {
+		termForOpponent (): string {
 			return this.isDuet ? 'partner' : 'opponent'
 		},
 
-		timeSeed () {
+		timeSeed (): Date {
 			const intervalMS = 60 * 15 * 1000
 			return new Date(Math.floor(Date.now() / intervalMS) * intervalMS)
 		},
