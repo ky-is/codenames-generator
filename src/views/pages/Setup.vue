@@ -47,7 +47,7 @@ onMounted(() => {
 })
 
 function onSubmit () {
-	setKey('seed', state.seed ?? timeSeed.value.toString())
+	setKey('seed', seed.value || timeSeed.value.toString())
 	setInSetup(false)
 }
 </script>
