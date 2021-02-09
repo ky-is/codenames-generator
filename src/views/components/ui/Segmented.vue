@@ -1,65 +1,58 @@
 <template>
-<div class="ui-control">
-	<span
-		v-for="[ key, display ] in data" :key="key"
-		class="control-content" :class="{ 'selected': key === value }"
-		@click="onSelect(key)"
-		v-html="display || key"
-	/>
-</div>
+	<div class="ui-control">
+		<span
+			v-for="[ key, display ] in data" :key="key"
+			class="control-content" :class="{ 'selected': key === value }"
+			@click="onSelect(key)"
+			v-html="display ?? key"
+		/>
+	</div>
 </template>
 
-<script>
-import Vue from 'vue'
+<script setup lang="ts">
+import { computed, defineProps } from 'vue'
 
-import store from '@/helpers/store'
+import { state, setKey } from '/@/helpers/store'
+import type { Key } from '/@/helpers/store'
 
-export default Vue.extend({
-	props: {
-		data: {
-			type: Array,
-			required: true,
-		},
-		mutation: {
-			type: String,
-			required: true,
-		},
-	},
+const props = defineProps<{
+	data: [string | number, string?][]
+	mutation: Key
+}>()
 
-	computed: {
-		value () {
-			return store.state[this.mutation]
-		},
-	},
+const value = computed(() => state[props.mutation])
 
-	methods: {
-		onSelect (key) {
-			store.set(this.mutation, key)
-		},
-	},
-})
+function onSelect (selection: string | number) {
+	setKey(props.mutation, selection)
+}
 </script>
 
 <style lang="postcss" scoped>
 body:not(.dark) {
 	& .control-content {
-		@apply text-grey-dark;
+		@apply text-gray-400;
 		&.selected {
-			@apply bg-grey-dark text-white;
+			@apply bg-gray-400 text-white;
 		}
 		&:not(.selected):hover {
-			@apply bg-grey-lighter;
+			@apply bg-gray-100;
+			&:active {
+				@apply bg-gray-200;
+			}
 		}
 	}
 }
 body.dark {
 	& .control-content {
-		@apply text-grey-dark;
+		@apply text-gray-400;
 		&.selected {
-			@apply bg-grey-dark text-black;
+			@apply bg-gray-400 text-black;
 		}
 		&:not(.selected):hover {
-			@apply bg-grey-darkest;
+			@apply bg-gray-900;
+			&:active {
+				@apply bg-gray-800;
+			}
 		}
 	}
 }
@@ -70,7 +63,7 @@ body.dark {
 }
 
 .control-content {
-	@apply h-12 flex-grow flex-shrink cursor-pointer;
+	@apply h-12 flex-grow flex-shrink cursor-pointer font-normal;
 	@apply flex justify-center items-center;
 	&.selected {
 		@apply cursor-default font-semibold;

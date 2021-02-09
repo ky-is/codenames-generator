@@ -1,0 +1,64 @@
+@import 'tailwindcss/base.css';
+
+@import 'tailwindcss/components.css';
+
+@import 'tailwindcss/utilities.css';
+
+body {
+	@apply font-sans font-light text-gray-900;
+}
+
+h1, h2, h3, p {
+	@apply px-3 font-light;
+}
+h1 {
+	@apply text-5xl;
+}
+h2 {
+	@apply text-2xl;
+}
+
+button, input {
+	@apply outline-none !important;
+}
+
+button, input, .control-content {
+	transition: background 250ms, color 250ms;
+}
+
+button {
+	@apply inline-block bg-gray-400 text-white;
+	&.big {
+		@apply px-6 h-14 rounded-xl text-3xl font-semibold;
+		min-width: 160px;
+	}
+	&:hover {
+		@apply bg-gray-300;
+		&:active {
+			@apply bg-gray-200;
+		}
+	}
+}
+
+/* Aspect ratio */
+
+.flex-along, .flex-against {
+	@apply flex;
+}
+.flex-against {
+	@apply flex-col;
+}
+.space-against {
+	@apply mt-2;
+}
+@media (max-aspect-ratio: 1/1) {
+	.space-against {
+		@apply mt-0 ml-2;
+	}
+	.flex-along {
+		@apply flex-col;
+	}
+	.flex-against {
+		@apply flex-row;
+	}
+}
